@@ -2,4 +2,3 @@
   for = "/*"
   [headers.values]
     access-control-allow-origin = '*'
-    access-control-allow-credentials = 'true'

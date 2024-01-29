@@ -16,6 +16,10 @@ exports.handler = async () => {
     return {
       statusCode: 200,
       body: JSON.stringify(data),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
     }
   } catch (error) {
     console.log(error)
