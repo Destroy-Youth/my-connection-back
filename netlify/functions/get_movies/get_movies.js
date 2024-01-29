@@ -7,7 +7,9 @@ const connection = mongoClient.connect()
 exports.handler = async () => { 
   try {
     const database = (await connection).db(process.env.MONGODB_DATABASE)
-    const collection = database.collection(process.env.MONGODB_COLLECTION)
+    const collection = database.collection(
+      process.env.MONGODB_COLLECTION_MOVIES
+    )
     //FIXME add pagination support
     const data = await collection.find({}).limit(10).toArray()
 
