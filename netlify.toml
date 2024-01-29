@@ -1,5 +1,5 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Access-Control-Allow-Origin = "*"
-    Access-Control-Allow-Credentials = "true"
+    access-control-allow-origin = '*'
+    access-control-allow-credentials = 'true'
