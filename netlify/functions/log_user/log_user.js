@@ -7,8 +7,6 @@ const connection = mongoClient.connect()
 
 exports.handler = async (event, context) => {
   if (event.httpMethod == 'OPTIONS') {
-    console.log('IF OPTIONS')
-
     return {
       statusCode: 200,
       headers: {
@@ -19,13 +17,20 @@ exports.handler = async (event, context) => {
     }
   }
 
+  if (event.httpMethod != 'POST') {
+    return {
+      statusCode: 405,
+    }
+  }
+
   try {
     const database = (await connection).db(process.env.MONGODB_DATABASE)
     const usersCollection = database.collection(
       process.env.MONGODB_COLLECTION_USERS
     )
     const { email, password } = JSON.parse(event.body)
-    const user = await usersCollection.findOne({ email, password })
+    let user = await usersCollection.findOne({ email, password })
+    delete user.password
 
     //FIXME replace hardcode for constants
     if (!user) {
